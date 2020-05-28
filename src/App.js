@@ -34,11 +34,15 @@ class App extends Component {
   }
 
   async signedInFlow() {
+    // something went wrong (web wallet wrong network maybe?)
+    await this.props.wallet.account().ready.catch((e) => {
+      localStorage.clear()
+      window.location = '/'
+    })
     console.log("come in sign in flow")
     this.setState({
       login: true,
     })
-    const accountId = await this.props.wallet.getAccountId()
     if (window.location.search.includes("account_id")) {
       window.location.replace(window.location.origin + window.location.pathname)
     }

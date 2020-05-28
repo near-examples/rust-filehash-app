@@ -28,6 +28,7 @@ async function initContract() {
         // Sender is the account ID to initialize transactions.
         sender: window.accountId
     });
+
 }
 
 window.nearInitPromise = initContract().then(() => {
